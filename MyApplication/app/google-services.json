@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "989301632765",
+    "firebase_url": "https://gunmoojoo-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "gunmoojoo",
+    "storage_bucket": "gunmoojoo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989301632765:android:259c1e12e1e072e0379894",
+        "android_client_info": {
+          "package_name": "com.example.keyar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989301632765-f4gt4n794k2v17515a4ud3ad60ckdbf6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdIFflp4u1HlXa8v6X1ucMEY7fnEqJA6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989301632765-f4gt4n794k2v17515a4ud3ad60ckdbf6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989301632765:android:17c03d8000691a95379894",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989301632765-f4gt4n794k2v17515a4ud3ad60ckdbf6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdIFflp4u1HlXa8v6X1ucMEY7fnEqJA6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989301632765-f4gt4n794k2v17515a4ud3ad60ckdbf6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989301632765:android:5738291d67abd51c379894",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989301632765-f4gt4n794k2v17515a4ud3ad60ckdbf6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdIFflp4u1HlXa8v6X1ucMEY7fnEqJA6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989301632765-f4gt4n794k2v17515a4ud3ad60ckdbf6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

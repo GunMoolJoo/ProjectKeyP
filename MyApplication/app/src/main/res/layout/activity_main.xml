@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="MainActivity"
+    android:orientation="horizontal">
+
+    <LinearLayout
+
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="162dp"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        android:paddingLeft="@android:dimen/app_icon_size"
+        android:paddingRight="@android:dimen/app_icon_size"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5">
+
+        <LinearLayout
+            android:id="@+id/inputId"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:hint="URL을 붙이세요"
+                android:minHeight="48dp"></EditText>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:hint="키워드를 적으세요"
+                android:minHeight="48dp"></EditText>
+
+
+        </LinearLayout>
+
+        <Button
+            android:background="@drawable/circle"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="+"
+            android:textSize="20dp"
+            android:layout_gravity="right"
+            android:gravity="center"
+
+            ></Button>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+        ></LinearLayout>
+
+
+</LinearLayout>
