@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingLeft="@android:dimen/app_icon_size"
+    android:paddingRight="@android:dimen/app_icon_size">
+
+
+    <TextView
+        android:id="@+id/logo_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="회원가입"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="26sp"></TextView>
+
+    <EditText
+        android:id="@+id/signUp_email"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="이메일을 입력하세요."></EditText>
+
+    <EditText
+        android:id="@+id/signUp_pass_1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="비밀번호를 입력하세요."></EditText>
+
+    <EditText
+        android:id="@+id/signUp_pass_2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="비밀번호를 한번 더 입력하세요."></EditText>
+
+    <Button
+        android:id="@+id/signUp_signUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="확인"></Button>
+
+</LinearLayout>

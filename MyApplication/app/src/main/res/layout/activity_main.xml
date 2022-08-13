@@ -5,16 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="MainActivity"
+    tools:context=".LoginActivity"
     android:orientation="horizontal">
 
     <LinearLayout
 
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="162dp"
-        android:orientation="vertical"
+        android:layout_height="591dp"
         android:layout_marginTop="30dp"
+        android:orientation="vertical"
         android:paddingLeft="@android:dimen/app_icon_size"
         android:paddingRight="@android:dimen/app_icon_size"
         app:layout_constraintHorizontal_bias="0.495"
@@ -30,33 +30,56 @@
             android:orientation="vertical">
 
             <EditText
+                android:id="@+id/url"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:hint="URL을 붙이세요"
-                android:minHeight="48dp"></EditText>
+                android:ellipsize="middle"
+                android:selectAllOnFocus="true"
+                android:minHeight="48dp"
+                android:singleLine="true" />
 
             <EditText
+                android:id="@+id/keyword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:hint="키워드를 적으세요"
-                android:minHeight="48dp"></EditText>
+                android:ellipsize="middle"
+                android:selectAllOnFocus="true"
+                android:minHeight="48dp"
+                android:singleLine="true" />
 
+            <EditText
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:hint="이름을 설정해 주세요"
+                android:ellipsize="middle"
+                android:selectAllOnFocus="true"
+                android:minHeight="48dp"
+                android:singleLine="true" />
 
+ㅓ
         </LinearLayout>
 
         <Button
-            android:background="@drawable/circle"
+            android:id="@+id/plus"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:background="@drawable/circle"
+            android:gravity="center"
             android:text="+"
             android:textSize="20dp"
-            android:layout_gravity="right"
-            android:gravity="center"
 
             ></Button>
 
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="428dp" />
 
 
     </LinearLayout>

@@ -6,15 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity2"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:paddingLeft="@android:dimen/app_icon_size"
+    android:paddingRight="@android:dimen/app_icon_size">
+
     <TextView
+        android:id="@+id/logo_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
         android:text="login"
-        android:textSize="24sp"
-        android:textColor="@android:color/holo_blue_dark"></TextView>
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="24sp"></TextView>
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,16 +28,19 @@
         android:layout_gravity="center"></ImageView>
 
     <EditText
+        android:id="@+id/login_email_Id"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="아이디를 입력하세요"></EditText>
 
 
     <EditText
+        android:id="@+id/login_passWord"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="비밀번호를 입력하세요"></EditText>
     <Button
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="LogIn"></Button>
@@ -56,18 +64,19 @@
         android:orientation="horizontal"
         android:weightSum="10"
         >
-        <TextView
+        <Button
+            android:id="@+id/find_pass"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:layout_weight="5"
-            android:text="Find Password"></TextView>
-        <TextView
+            android:text="Find Password"></Button>
+        <Button
+            android:id="@+id/sign"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:gravity="center"
-            android:layout_weight="5"
-            android:text="Sign Up"></TextView>
+            android:layout_weight="10"
+            android:text="Sign Up"></Button>
 
     </LinearLayout>
 
