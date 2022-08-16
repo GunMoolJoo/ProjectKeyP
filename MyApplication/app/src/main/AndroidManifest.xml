@@ -20,14 +20,20 @@
             android:name=".MainActivity2"
             android:exported="false" />
         <activity
+            android:name=".Story"/>
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
+
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

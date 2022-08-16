@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
         Button loginButton = (Button)findViewById(R.id.login);
-        Button imageButton = (Button) findViewById(R.id.Test);
         Button signUp = (Button)findViewById(R.id.sign);
 
         //회원가입 버튼 접ㅈ속!
@@ -61,11 +61,13 @@ public class LoginActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             //로그인 성공
                             Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
+                            intent.putExtra("throw_email", strEmail);
                             startActivity(intent);
-                            finish();//
+                            Log.d("로그인성공","맞음");
                         }
                         else{
                             Toast.makeText(LoginActivity.this, "로그인 실패...", Toast.LENGTH_SHORT).show();
+                            Log.d("로그인실패","틀림");
                         }
                     }
                 });
@@ -74,16 +76,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
-                startActivity(intent);
-            }
-
-        });
 
     }
 

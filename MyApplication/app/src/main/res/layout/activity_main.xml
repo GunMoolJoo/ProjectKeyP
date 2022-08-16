@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
-    android:orientation="horizontal">
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".LoginActivity">
 
     <LinearLayout
 
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="591dp"
+        android:layout_height="687dp"
         android:layout_marginTop="30dp"
         android:orientation="vertical"
         android:paddingLeft="@android:dimen/app_icon_size"
@@ -34,10 +34,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:hint="URL을 붙이세요"
                 android:ellipsize="middle"
-                android:selectAllOnFocus="true"
+                android:hint="URL을 붙이세요"
                 android:minHeight="48dp"
+                android:selectAllOnFocus="true"
                 android:singleLine="true" />
 
             <EditText
@@ -45,49 +45,57 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:ellipsize="middle"
                 android:hint="키워드를 적으세요"
-                android:ellipsize="middle"
-                android:selectAllOnFocus="true"
                 android:minHeight="48dp"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:hint="이름을 설정해 주세요"
-                android:ellipsize="middle"
                 android:selectAllOnFocus="true"
-                android:minHeight="48dp"
                 android:singleLine="true" />
-
-ㅓ
         </LinearLayout>
 
-        <Button
-            android:id="@+id/plus"
-            android:layout_width="50dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_gravity="right"
-            android:background="@drawable/circle"
-            android:gravity="center"
-            android:text="+"
-            android:textSize="20dp"
+            android:orientation="horizontal">
 
-            ></Button>
+            <Button
+                android:id="@+id/plus"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="left"
+                android:layout_margin="20dp"
+                android:background="@drawable/circle"
+                android:text="+"
+                android:textSize="20dp"></Button>
+
+            <Button
+                android:id="@+id/delete"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="left"
+                android:background="@drawable/circle"
+                android:text="-"
+                android:textSize="20dp"></Button>
+
+            <Button
+                android:id="@+id/story"
+                android:layout_width="143dp"
+                android:layout_height="50dp"
+                android:layout_gravity="left"
+                android:layout_margin="20dp"
+                android:text="기사확인"
+                android:textSize="20dp"></Button>
+        </LinearLayout>
 
         <ListView
+            android:id="@+id/listview1"
             android:layout_width="match_parent"
-            android:layout_height="428dp" />
+            android:layout_height="495dp"
+            android:layout_weight="1"
+            android:choiceMode="singleChoice"
+            />
 
 
     </LinearLayout>
-
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-        ></LinearLayout>
 
 
 </LinearLayout>
