@@ -4,83 +4,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity2"
-    android:orientation="vertical"
+    android:background="@drawable/intro_img"
     android:gravity="center"
-    android:paddingLeft="@android:dimen/app_icon_size"
-    android:paddingRight="@android:dimen/app_icon_size">
+    android:orientation="vertical"
+    tools:context=".MainActivity2">
 
-    <TextView
-        android:id="@+id/logo_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="login"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="24sp"></TextView>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@mipmap/ic_launcher"
-        android:layout_gravity="center"></ImageView>
-
-    <EditText
-        android:id="@+id/login_email_Id"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="아이디를 입력하세요"></EditText>
-
-
-    <EditText
-        android:id="@+id/login_passWord"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="비밀번호를 입력하세요"></EditText>
-    <Button
-        android:id="@+id/login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="LogIn"></Button>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="or"
-        >
-    </TextView>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="10"
+        android:layout_width="350dp"
+        android:layout_height="450dp"
+        android:background="@drawable/login_box"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@android:dimen/app_icon_size"
         >
-        <Button
-            android:id="@+id/find_pass"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+
+        <TextView
+
+            android:id="@+id/logo_login"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/ulsanjunggu"
             android:gravity="center"
-            android:text="Find Password"></Button>
-        <Button
-            android:id="@+id/sign"
-            android:layout_width="wrap_content"
+            android:text="Keyword Surfing"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="34dp" />
+
+        <ImageView
+            android:layout_width="254dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:src="@drawable/loginicon"
+            app:layout_constraintStart_toStartOf="parent"></ImageView>
+
+        <EditText
+            android:id="@+id/login_email_Id"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:hint="아이디를 입력하세요"
+            android:textColorHint="#888888"></EditText>
+
+
+        <EditText
+            android:id="@+id/login_passWord"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="비밀번호를 입력하세요"
+            android:textColorHint="#888888"
+            ></EditText>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/main_btn"
+            android:text="LogIn"
+            android:textColor="@color/black"
+            ></androidx.appcompat.widget.AppCompatButton>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_weight="10"
-            android:text="Sign Up"></Button>
+            android:text="or"
+            ></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/find_pass"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_left_btn"
+                android:gravity="center"
+                android:text="Find Password"
+                android:textColor="@color/white"></androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/sign"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:background="@drawable/blue_right_btn"
+                android:gravity="center"
+                android:text="Sign Up"
+                android:textColor="@color/white"></androidx.appcompat.widget.AppCompatButton>
+
+        </LinearLayout>
+
 
     </LinearLayout>
-
-
-
-
-
-
-
-
 
 
 </LinearLayout>

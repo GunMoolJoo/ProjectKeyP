@@ -15,7 +15,7 @@ public class IntroActivity extends Activity {
             @Override
             public void run() {
                 // 인트로 화면을 보여준 후 intent를 사용해 메인화면인 MainActivity.class로 넘어가도록 함
-                Intent intent = new Intent (getApplicationContext(), LoginActivity.class);
+                Intent intent = new Intent (IntroActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
