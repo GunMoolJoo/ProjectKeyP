@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -59,6 +60,9 @@ public class SignUpActivity3 extends AppCompatActivity {
                             mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
 
                             Toast.makeText(SignUpActivity3.this, "회원가입에 성공하였습니다.", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(SignUpActivity3.this, MainActivity2.class);
+                            startActivity(intent);
+                            finish();
                         }
                         else{
                             Toast.makeText(SignUpActivity3.this, "회원가입에 실패하였습니다.", Toast.LENGTH_SHORT).show();

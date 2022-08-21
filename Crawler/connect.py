@@ -4,18 +4,10 @@
 
 from concurrent.futures import ThreadPoolExecutor
 import concurrent.futures
-from email import header
-from email.headerregistry import HeaderRegistry
-from glob import glob
 from multiprocessing import Pool
 import multiprocessing as mp
-from threading import Thread
-import threading
 import time
-from urllib import request, response
-from wsgiref import headers
-import psutil
-## psutil pip install psutil 로 깔아줘야함
+from urllib import response
 
 import firebase_admin
 from firebase_admin import credentials
@@ -23,14 +15,15 @@ from firebase_admin import firestore
 
 import requests as rq
 from bs4 import BeautifulSoup
-from datetime import datetime
 
-
+from firebase_admin import messaging
 
 
 ### field ######################
 # url 리스트
 urlList = []
+
+
 
 
 # 디코딩할때 사용해줄 도구
@@ -85,7 +78,7 @@ def unescape_firebase_key(text):
 def crawler(url):
     ## url을 디코딩 해준 후 realurl에 넣어줌
     realUrl = unescape_firebase_key(url)
-
+    
     # url에서 파싱하기
     res = rq.get(realUrl, headers={'User-Agent':'Mozilla/5.0'})
     soup = BeautifulSoup(res.text, 'lxml')
@@ -114,30 +107,58 @@ def find_keyword_in_crawling_data(url, crawling_data, keyword):
     ## 크롤링된 데이터들 중에 keyword를 포함한 문장이 있으면 데이터베이스에 update( 중복이 있으면 저장하지 않음 )
     for line in crawling_data:
         if keyword in line.text.strip():
-            doc_ref = doc_ref = db.collection('crawlingUrl').document(url).collection(keyword)
+            doc_ref = db.collection('crawlingUrl').document(url).collection(keyword)
             ## DB에 데이터 저장하기
             ## 저장할 데이터 확실하게 결정 후 수정 필요!
             
-            ## 이거는 입력받은 url에서 찾은 데이터
-            doc_ref.document('data').update({'data' : firestore.ArrayUnion([{line.text.strip():line.get('href')}])})
+            ## db에 해당 데이터가 있는지 확인
+            tag = True
+            data = doc_ref.document('data').get().to_dict()
+            array_data = data['data']
+            for c_data in array_data:
+                print(c_data)
+                print(line.text.strip())
+                if line.text.strip() in c_data:
+                    tag = False
+                    break
             
-            ## 본문내용 요약하기
+            ## db에 해당 크롤링 데이터가 없으면
+            if tag:
+                ## 이거는 입력받은 url에서 찾은 데이터
+                doc_ref.document('data').update({'data' : firestore.ArrayUnion([{line.text.strip():line.get('href')}])})
+                
+                ## api 통신 오류 예외처리
+                try:
+                ## 본문내용 요약하기
+                    summary_text = summary(line.get('href'))
+                ## 본문을 요약한 후 DB에 넣을 데이터
+                    doc_ref.document('summary').update({'summary' : firestore.ArrayUnion([{line.get('href'):summary_text}])})
+                except Exception as e:
+                    ## API 통신 오류
+                    summary_text = '통신 오류'
+                print('summary : {0}'.format(summary_text))
+                
+                ## 해당 키워드를 구독한 유저의 토큰정보 가져오기
+                registration_tokens = doc_ref.document('user').get().to_dict().get('user')
+                print('tokens : {0}'.format(registration_tokens))
+                ## 키워드 알람 보내기
+                sendMessage(url=line.get('href'), keyword=keyword, summary=summary_text, registration_tokens=registration_tokens)
+            else:
+                print('pass')            
+                
             
-            summary_text = summary(line.get('href'))
-            
-            ## 본문을 요약한 후 DB에 넣을 데이터
-            doc_ref.document('summary').update({'summary' : firestore.ArrayUnion([{line.get('href'):summary_text}])})
             
             
             
-## craw main text - 본문 크롤링하기  #################################
+            
+##### craw main text - 본문 크롤링하기  #################################
 
 ## use  Papago API  #################################################
 #### papago API url
 papago_url = "https://openapi.naver.com/v1/papago/n2mt"
 #### papago API key
-naver_client_id = 'IA_L6oYvsrjg2kqQFruz'
-naver_client_secret = 'S2gY5DO1ea'
+naver_client_id = 'hVbkQXQChVEjEKvNEW1V'
+naver_client_secret = 'ZWa2lTBimR'
 
 #### 한글 -> 영어 번역하기 ###############################
 def use_papago_for_kor_to_eng(trans_text):
@@ -265,9 +286,8 @@ def summary(crawling_url):
 
 ############### porcess #########################################################
 
-
-## porcess는 url에서 크롤링을 해준다.
-## 크롤링된 데이터를 쓰레드를 통해서 키워드를 찾아준다.
+## 크롤링된 데이터를 쓰레드를 통해서 
+## porcess는 url에서 크롤링을 해준다키워드를 찾아준다.
 def do_process_with_thread_craw(url: str):
     ## 크롤링된 데이터
     crawling_data = crawler(url)
@@ -283,7 +303,7 @@ def do_process_with_thread_craw(url: str):
 def do_thread_keyword_find(url, crwaling_data, keyWordList):
     thread_list = []
     
-    with ThreadPoolExecutor(max_workers=8) as excutor:
+    with ThreadPoolExecutor(max_workers=100) as excutor:
         for keyWord in keyWordList:
             thread_list.append(excutor.submit(find_keyword_in_crawling_data, url, crwaling_data, keyWord))
         for excution in concurrent.futures.as_completed(thread_list):
@@ -322,6 +342,28 @@ def on_snapshot(doc_snapshot, changes, read_time):
 
 
 
+##################  Firebase FCM Message Server ##############
+
+### FCM API Server Key
+APIKEY = "29a642ad200caddf283fa628dd7d4db1dd552f31"
+
+### send messages (body, title) ############# 
+def sendMessage(url, keyword, summary, registration_tokens):
+    
+    
+    # 메시지 (data type)
+    message = messaging.MulticastMessage(
+        data={"url": url,"keyword": keyword,"summary": summary},
+        tokens = registration_tokens,
+    )
+    
+    response = messaging.send_multicast(message)
+    
+    # 전송 결과 출력
+    print('{0} messages were sent successfully'.format(response.success_count))
+
+
+
 ### main #########################
 
 if __name__ == "__main__":
@@ -329,18 +371,19 @@ if __name__ == "__main__":
     
     ## cpu 코어에 맞춰서 프로세싱 진행
     num_cores = mp.cpu_count()
-    
-    with Pool(processes=num_cores) as pool:
-        pool.map(do_process_with_thread_craw, urlList)
+        
     ### url이 추가되는지 계속해서 확인    
     doc_ref = db.collection('crawlingUrl').document('urlList')
     doc_ref.on_snapshot(on_snapshot)
 
     ## 메인 쓰레드가 멈추는 것을 방지하는 부분
     while True:
-        ## 멀티 프로세싱을 계속해서 진행함
-        with Pool(processes=num_cores) as pool:
-            pool.map(do_process_with_thread_craw, urlList)
-        time.sleep(3)
-        print("wait...")
 
+        ## 멀티 프로세싱을 계속해서 진행함
+        try:
+            with Pool(processes=num_cores) as pool:
+                pool.map(do_process_with_thread_craw, urlList)
+        except Exception as e:
+            print(e)
+        print('wait...')
+        time.sleep(10)

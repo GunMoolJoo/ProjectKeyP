@@ -12,7 +12,7 @@
 
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="687dp"
+        android:layout_height="633dp"
         android:layout_marginTop="30dp"
         android:orientation="vertical"
         android:paddingLeft="@android:dimen/app_icon_size"
@@ -89,10 +89,9 @@
         <ListView
             android:id="@+id/listview1"
             android:layout_width="match_parent"
-            android:layout_height="495dp"
-            android:layout_weight="1"
-            android:choiceMode="singleChoice"
-            />
+            android:layout_height="450dp"
+
+            android:choiceMode="singleChoice" />
 
 
     </LinearLayout>
